@@ -1,0 +1,22 @@
+{
+  "name": "landing-page-auto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp-mustache": "^4.1.0",
+    "gulp-purgecss": "^1.1.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-sequence": "^1.0.0",
+    "mustache": "^3.0.1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "gulp": "^3.9.1"
+  }
+}
