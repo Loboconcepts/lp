@@ -2013,7 +2013,7 @@ function drawFace() {
 
   ctx.beginPath();
   ctx.fillStyle = "#786060";
-  ctx.arc(lookDirection-235, -eyeUpDown, 30, 0, Math.PI * 2, true);
+  ctx.arc(lookDirection-225, -eyeUpDown, 30, 0, Math.PI * 2, true);
   ctx.fill();
   ctx.stroke();
 
@@ -2077,7 +2077,7 @@ var oldTargetPos = targetPos;
 var faceTiming = setInterval(function() {
   function runFace() {
     
-    lookDirection = 70 + ((targetPos.x*100)/window.innerWidth);
+    lookDirection = 60 + ((targetPos.x*100)/window.innerWidth);
     eyeUpDown = 105 - (((targetPos.y-(canvas.offsetTop-window.pageYOffset))*100)/(window.innerHeight));
     if (Math.abs(oldTargetPos.x-targetPos.x) > 2 || Math.abs(oldTargetPos.y-targetPos.y) > 2) {
       excite();  
