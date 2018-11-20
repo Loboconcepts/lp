@@ -2073,14 +2073,20 @@ var m;
     mouthOpen = mouthOpen + m;
     eyebrowExcite = eyebrowExcite + m/4;
   };
-
+var oldTargetPos = targetPos;
 var faceTiming = setInterval(function() {
   function runFace() {
-    excite();
+    
     lookDirection = 70 + ((targetPos.x*100)/window.innerWidth);
     eyeUpDown = 105 - (((targetPos.y-(canvas.offsetTop-window.pageYOffset))*100)/(window.innerHeight));
+    if (oldTargetPos != targetPos) {
+      excite();  
+    }
     drawFace();
-    // console.log(Math.ceil((targetPos.y*100)/window.innerHeight));
+    oldTargetPos = targetPos;
+
+
+    
     
 
   }
