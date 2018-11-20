@@ -2028,7 +2028,7 @@ var faceTiming = setInterval(function() {
   function runFace() {
     excite();
     lookDirection = 70 + ((targetPos.x*100)/window.innerWidth);
-    eyeUpDown = 110 - (((targetPos.y-(canvas.offsetTop-window.pageYOffset))*100)/(window.innerHeight));
+    eyeUpDown = 105 - (((targetPos.y-(canvas.offsetTop-window.pageYOffset))*100)/(window.innerHeight));
     drawFace();
     // console.log(Math.ceil((targetPos.y*100)/window.innerHeight));
     
