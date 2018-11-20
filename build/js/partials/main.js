@@ -1912,10 +1912,8 @@ function drawFace() {
   ctx.quadraticCurveTo(60, 0, 60, 120);
   ctx.lineTo(0, 120);
   ctx.stroke();
+
   //mouth
-
-  
-
   ctx.beginPath();
   ctx.fillStyle = "#000000"
   ctx.strokeStyle="#DDA8A0";
@@ -1976,21 +1974,7 @@ function drawFace() {
 
   ctx.restore();
 }
-var m;
 
-function excite(draw) {
-  if (mouthOpen <= 20) {
-    m = 1/2;
-  };
-  if (mouthOpen >= 190) {
-    m = -10;
-  };
-  mouthOpen = mouthOpen + m;
-  eyebrowExcite = eyebrowExcite + m/4;
-  if (draw != false) {
-    drawFace();
-  };
-};
 
 
 function getMousePos(window, evt) {
@@ -2026,3 +2010,25 @@ window.addEventListener('deviceorientation', function(evt) {
 }, false);
 
 drawFace();
+
+var m;
+  function excite() {
+    if (mouthOpen <= 20) {
+      m = 1;
+    };
+    if (mouthOpen >= 190) {
+      m = -20;
+    };
+    mouthOpen = mouthOpen + m;
+    eyebrowExcite = eyebrowExcite + m/4;
+  };
+
+var faceTiming = setInterval(function() {
+  function runFace() {
+    excite();
+    drawFace();
+    
+
+  }
+  return runFace;
+}(), 20);
