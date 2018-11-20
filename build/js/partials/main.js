@@ -1986,19 +1986,20 @@ function getMousePos(window, evt) {
 };
 var origOrientation = [];
 function deviceOrientation(evt) {
-  origOrientation = [evt.beta,evt.gamma];
+  origOrientation = [evt.gamma,evt.beta];
   window.removeEventListener('deviceorientation', deviceOrientation, false);
 }
 
 function handleOrientation(evt) {
-  return {x : evt.gamma - origOrientation[1],y : evt.beta - origOrientation[0]}
-};
+  return {x : evt.gamma - (origOrientation[0]-window.innerWidth/2),y : evt.beta - (origOrientation[1]-window.innerHeight/2)}
+};  
 
 function resetOrientation() {
   window.addEventListener('deviceorientation', deviceOrientation, false); 
 }
 
 resetOrientation();
+var targetPos = {x:(window.innerWidth/2),y:(window.innerHeight/2)};
 
 window.addEventListener('mousemove', function(evt) {
   targetPos = getMousePos(window, evt);
@@ -2006,7 +2007,6 @@ window.addEventListener('mousemove', function(evt) {
 
 window.addEventListener('deviceorientation', function(evt) {
   targetPos = handleOrientation(evt);
-  console.log(targetPos);
 }, false);
 
 drawFace();
@@ -2026,7 +2026,10 @@ var m;
 var faceTiming = setInterval(function() {
   function runFace() {
     excite();
+    lookDirection = 70 + ((targetPos.x*100)/window.innerWidth);
+    eyeUpDown = 125 - ((targetPos.y*100)/window.innerHeight);
     drawFace();
+    // console.log(Math.ceil((targetPos.y*100)/window.innerHeight));
     
 
   }
