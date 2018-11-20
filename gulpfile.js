@@ -38,7 +38,3 @@ gulp.task('mustache-final', function() {
 });
 
 gulp.task('default', gulpSequence('mustache-html','sass','purgecss','mustache-final'));
-
-// gulp.task('default', ['mustache-html','sass', 'purgecss','mustache-final'], function(){
-//    console.log("Yay!")
-// });

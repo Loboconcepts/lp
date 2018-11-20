@@ -1825,52 +1825,204 @@ function getPosition(element) {
   };
 }));
 
-	// transparent navbar
-var navbar = document.querySelector('.fixed-top'), scrollTimer = null,
-			mouseHover = ('onmouseleave' in document) ? [ 'mouseenter', 'mouseleave'] : [ 'mouseover', 'mouseout' ];
-navbar.style.backfaceVisibility = 'hidden';
-navbar.style.transition = 'opacity 0.5s linear 0s';
-navbar.style.WebkitTransition = 'opacity 0.5s linear 0s';
+// Canvas Adam
 
-function setNavbarOpacity(){
-	clearTimeout(scrollTimer);
-	scrollTimer = !navbar.classList.contains('HOVER') ? setTimeout(function(){
-		var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-		if ( scrollTop < 120 ){
-			navbar.style.opacity = 1
-		} else {
-			navbar.style.opacity = 0.7
-		}
-	},50) : function() {return false;}
+var lookDirection = 120;
+var eyeShadow = 5;
+var mouthOpen = 20;
+var eyebrowExcite = 140;
+var eyeUpDown = 85;
+var shirtColor = "rgb("+ Math.floor(Math.random() * 125) + "," + Math.floor(Math.random() * 125) + "," + Math.floor(Math.random() * 125) + ")";
+var mouthRand = Math.floor(Math.random() * 50);
+
+var W = H = 1000;
+var canvas = document.getElementById("face");
+canvas.width = W-120;
+canvas.height = H;
+canvas.style.position = "relative";
+canvas.style.width = "400px";
+canvas.style.height = "auto";
+
+var ctx = canvas.getContext("2d");
+
+function drawFace() {
+  ctx.rect(0, 0, canvas.width, canvas.height);
+  ctx.save();
+  ctx.translate(canvas.width/2, canvas.height/2);
+
+  //hair
+  ctx.beginPath();
+  ctx.fillStyle = "#6A4E42";
+  ctx.strokeStyle="#000000";
+  ctx.lineWidth=5;
+  ctx.moveTo(-270, -330);
+  ctx.bezierCurveTo(-350,300,350,300,270,-330);
+  ctx.quadraticCurveTo(0,-600,-270,-330);
+  ctx.fill();
+  ctx.stroke();
+
+
+  //shirt/body
+  ctx.beginPath();
+  ctx.fillStyle = shirtColor;
+  ctx.moveTo(0, 300);//leave this height for slouch
+  ctx.quadraticCurveTo(-300,300,-420,500);
+  ctx.lineTo(420,500);
+  ctx.quadraticCurveTo(300,300,-0,300);
+  ctx.fill();
+  ctx.stroke();
+
+  //neck
+  ctx.beginPath();
+  ctx.fillStyle = "#DDA8A0";
+  ctx.moveTo(-160, 0);
+  ctx.lineTo(-160,350);
+  ctx.quadraticCurveTo(0,600,160,350);
+  ctx.lineTo(160,0);
+  ctx.fill();
+  ctx.stroke();
+
+  //outer face
+  ctx.beginPath();
+  ctx.moveTo(-50, -320);
+  ctx.quadraticCurveTo(-270, -320,-270, -100);
+  ctx.quadraticCurveTo(-310, 225, -100, 300);
+  ctx.quadraticCurveTo(0, 350, 100, 300);
+  ctx.quadraticCurveTo(310, 225, 270, -100);
+  ctx.quadraticCurveTo(270, -320,-50, -320);
+  // ctx.bezierCurveTo(270, -500, -270, -500, -270, -100);
+  ctx.fill();
+  ctx.stroke();
+  ctx.clip();
+
+  //beard
+  ctx.beginPath();
+  ctx.fillStyle = "#6A4E42";
+  ctx.moveTo(-270-10, 0);
+  ctx.quadraticCurveTo(-310, 225, -100, 300);
+  ctx.quadraticCurveTo(0, 350, 100, 300);
+  ctx.quadraticCurveTo(310, 225, 270+10, 0);
+  ctx.bezierCurveTo(250, 180,-250, 180, -270-10, 0);
+
+  ctx.stroke();
+  ctx.fill();
+  //nose
+  ctx.beginPath();
+  ctx.moveTo(20, -50);
+  ctx.quadraticCurveTo(60, 0, 60, 120);
+  ctx.lineTo(0, 120);
+  ctx.stroke();
+  //mouth
+
+  
+
+  ctx.beginPath();
+  ctx.fillStyle = "#000000"
+  ctx.strokeStyle="#DDA8A0";
+  ctx.lineWidth=5;
+  ctx.moveTo(-100, 150 + mouthRand);
+  ctx.quadraticCurveTo(0, 220, 100, 150 + mouthRand);
+  ctx.quadraticCurveTo(0, 220+mouthOpen, -100, 150 + mouthRand);
+  ctx.fill();
+  ctx.stroke();
+
+  //eyebrows
+  ctx.beginPath();
+  ctx.strokeStyle="#6A4E42";
+  ctx.lineWidth=15;
+  ctx.moveTo(-200, -140);
+  ctx.quadraticCurveTo(-100,-160,-50,-eyebrowExcite);
+  ctx.moveTo(200, -140);
+  ctx.quadraticCurveTo(100,-160,50,-eyebrowExcite);
+  ctx.stroke();
+
+  //eye shadow
+  ctx.beginPath();
+  ctx.strokeStyle="#000000";
+  ctx.lineWidth=5;
+  ctx.moveTo(-200-eyeShadow, -80-eyeShadow);
+  ctx.quadraticCurveTo(-100-eyeShadow, -160-eyeShadow, -50 + eyeShadow, -80-eyeShadow);
+  ctx.quadraticCurveTo(-80, -30+eyeShadow, -200-eyeShadow, -80+eyeShadow);
+  ctx.moveTo(200+eyeShadow, -80-eyeShadow);
+  ctx.quadraticCurveTo(100+eyeShadow, -160-eyeShadow, 50-eyeShadow, -80-eyeShadow);
+  ctx.quadraticCurveTo(80, -30+eyeShadow, 200+eyeShadow, -80+eyeShadow);
+  ctx.fill();
+  //eyes
+  ctx.fillStyle = "#ffffff"
+  ctx.beginPath();
+  ctx.moveTo(-200, -80);
+  ctx.quadraticCurveTo(-100, -160, -50, -80);
+  ctx.quadraticCurveTo(-100, -30, -200, -80);
+  ctx.moveTo(200, -80);
+  ctx.quadraticCurveTo(100, -160, 50, -80);
+  ctx.quadraticCurveTo(100, -30, 200, -80);
+  ctx.fill();
+  // ctx.stroke();
+  ctx.clip();
+
+  //cornea
+
+  ctx.beginPath();
+  ctx.fillStyle = "#786060";
+  ctx.arc(lookDirection-235, -eyeUpDown, 30, 0, Math.PI * 2, true);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(lookDirection, -eyeUpDown, 30, 0, Math.PI * 2, true);
+  ctx.fill();
+  ctx.stroke();
+  // ctx.closePath();
+
+  ctx.restore();
+}
+var m;
+
+function excite(draw) {
+  if (mouthOpen <= 20) {
+    m = 1/2;
+  };
+  if (mouthOpen >= 190) {
+    m = -10;
+  };
+  mouthOpen = mouthOpen + m;
+  eyebrowExcite = eyebrowExcite + m/4;
+  if (draw != false) {
+    drawFace();
+  };
+};
+
+
+function getMousePos(window, evt) {
+  // var rect = header.getBoundingClientRect();
+  return {
+    x: evt.clientX,
+    y: evt.clientY
+  };
+};
+var origOrientation = [];
+function deviceOrientation(evt) {
+  origOrientation = [evt.beta,evt.gamma];
+  window.removeEventListener('deviceorientation', deviceOrientation, false);
 }
 
-function setNavbarOpacityOnEnter(){
-	clearTimeout(scrollTimer);
-	scrollTimer = setTimeout(function(){
-		if (!navbar.classList.contains('HOVER')) {
-			navbar.classList.add('HOVER');
-			var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-			if ( scrollTop > 120 ){
-				navbar.style.opacity = 1
-			}
-		}
-	},0)
+function handleOrientation(evt) {
+  return {x : evt.gamma - origOrientation[1],y : evt.beta - origOrientation[0]}
+};
+
+function resetOrientation() {
+  window.addEventListener('deviceorientation', deviceOrientation, false); 
 }
 
-function setNavbarOpacityOnLeave(){
-	clearTimeout(scrollTimer);
-	scrollTimer = setTimeout(function(){
-		if (navbar.classList.contains('HOVER')) {
-			navbar.classList.remove('HOVER');
-			var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-			if ( scrollTop > 120 ){
-				navbar.style.opacity = 0.7
-			}
-		}
-	},0)
-}
+resetOrientation();
 
-document.addEventListener('DOMContentLoaded', setNavbarOpacity, false);
-window.addEventListener('scroll', setNavbarOpacity, false);
-navbar.addEventListener(mouseHover[0],setNavbarOpacityOnEnter,false);
-navbar.addEventListener(mouseHover[1],setNavbarOpacityOnLeave,false);
+window.addEventListener('mousemove', function(evt) {
+  targetPos = getMousePos(window, evt);
+}, false);
+
+window.addEventListener('deviceorientation', function(evt) {
+  targetPos = handleOrientation(evt);
+  console.log(targetPos);
+}, false);
+
+drawFace();
