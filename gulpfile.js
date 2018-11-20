@@ -3,6 +3,7 @@ var sass = require('gulp-sass');
 var mustache = require('gulp-mustache');
 var gulpSequence = require('gulp-sequence');
 var purgecss = require('gulp-purgecss');
+var minify = require('gulp-minify');
 
 
 gulp.task('mustache-html', function() {
@@ -31,10 +32,22 @@ gulp.task('purgecss', function() {
     .pipe(gulp.dest('./build/css/partials'))
 })
 
+gulp.task('compress', function() {
+  gulp.src(['./main.js'])
+    .pipe(minify({
+        noSource:true,
+        ext : {
+            src: '.js',
+            min: '.js'
+        }
+    }))
+    .pipe(gulp.dest('./build/js/partials'))
+});
+
 gulp.task('mustache-final', function() {
 	gulp.src("./build/html/index.html")
     .pipe(mustache({},{},{}))
     .pipe(gulp.dest("./dist"));
 });
 
-gulp.task('default', gulpSequence('mustache-html','sass','purgecss','mustache-final'));
+gulp.task('default', gulpSequence('mustache-html','compress','sass','purgecss','mustache-final'));
