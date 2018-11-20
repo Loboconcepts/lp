@@ -2028,7 +2028,7 @@ var faceTiming = setInterval(function() {
     
     lookDirection = 70 + ((targetPos.x*100)/window.innerWidth);
     eyeUpDown = 105 - (((targetPos.y-(canvas.offsetTop-window.pageYOffset))*100)/(window.innerHeight));
-    if (oldTargetPos != targetPos) {
+    if (Math.abs(oldTargetPos.x-targetPos.x) > 2 || Math.abs(oldTargetPos.y-targetPos.y) > 2) {
       excite();  
     }
     drawFace();
