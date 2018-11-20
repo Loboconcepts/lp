@@ -1986,12 +1986,12 @@ function getMousePos(window, evt) {
 };
 var origOrientation = [];
 function deviceOrientation(evt) {
-  origOrientation = [evt.gamma,evt.beta];
+  origOrientation = [-evt.gamma*5,-evt.beta*5];
   window.removeEventListener('deviceorientation', deviceOrientation, false);
 }
 
 function handleOrientation(evt) {
-  return {x : evt.gamma - (origOrientation[0]-window.innerWidth/2),y : evt.beta - (origOrientation[1]-window.innerHeight/2)}
+  return {x : (-evt.gamma*5) - (origOrientation[0]-window.innerWidth/2),y : (-evt.beta*5) - (origOrientation[1]-window.innerHeight/2)}
 };  
 
 function resetOrientation() {
@@ -2006,8 +2006,7 @@ window.addEventListener('mousemove', function(evt) {
 }, false);
 
 window.addEventListener('deviceorientation', function(evt) {
-  var egg = handleOrientation(evt);
-  targetPos = {x:egg.x,y:egg.y}
+  targetPos = {x:handleOrientation(evt).x,y:handleOrientation(evt).y}
 }, false);
 
 drawFace();
