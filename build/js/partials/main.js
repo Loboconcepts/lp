@@ -2006,7 +2006,8 @@ window.addEventListener('mousemove', function(evt) {
 }, false);
 
 window.addEventListener('deviceorientation', function(evt) {
-  targetPos = handleOrientation(evt);
+  var egg = handleOrientation(evt);
+  targetPos = {x:egg.x,y:egg.y}
 }, false);
 
 drawFace();
@@ -2027,7 +2028,7 @@ var faceTiming = setInterval(function() {
   function runFace() {
     excite();
     lookDirection = 70 + ((targetPos.x*100)/window.innerWidth);
-    eyeUpDown = 125 - ((targetPos.y*100)/window.innerHeight);
+    eyeUpDown = 110 - (((targetPos.y-(canvas.offsetTop-window.pageYOffset))*100)/(window.innerHeight));
     drawFace();
     // console.log(Math.ceil((targetPos.y*100)/window.innerHeight));
     
