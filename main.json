@@ -1,5 +1,5 @@
 {
-	"title" : "Page Title",
+	"title" : "Adam",
 	"styles" : "{{> ../../build/css/partials/style.css}}",
 	"scripts" : "{{> ../../build/js/partials/main.js }}"
 }
