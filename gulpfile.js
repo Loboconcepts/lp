@@ -4,6 +4,13 @@ var mustache = require('gulp-mustache');
 var gulpSequence = require('gulp-sequence');
 var purgecss = require('gulp-purgecss');
 var minify = require('gulp-minify');
+var gzip = require('gulp-gzip');
+ 
+gulp.task('gzip', function() {
+    gulp.src('./dist/index.html')
+    .pipe(gzip())
+    .pipe(gulp.dest('./dist/gzip/'));
+});
 
 
 gulp.task('mustache-html', function() {
@@ -18,7 +25,7 @@ sass.compiler = require('node-sass');
 gulp.task('sass', function() {
   return gulp.src('./sass/style.scss')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(gulp.dest('./build/css'));
+    .pipe(gulp.dest('./build/css/partials'));
 });
 
 gulp.task('purgecss', function() {
@@ -33,7 +40,7 @@ gulp.task('purgecss', function() {
 })
 
 gulp.task('compress', function() {
-  gulp.src(['./main.js'])
+  gulp.src(['.build/js/main.js'])
     .pipe(minify({
         noSource:true,
         ext : {

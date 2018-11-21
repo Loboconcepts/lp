@@ -2028,6 +2028,8 @@ var faceTiming = setInterval(function() {
     
     lookDirection = 60 + ((targetPos.x*100)/window.innerWidth);
     eyeUpDown = 105 - (((targetPos.y-(canvas.offsetTop-window.pageYOffset))*100)/(window.innerHeight));
+    if (eyeUpDown > 112) {eyeUpDown = 112};
+    if (eyeUpDown < 52) {eyeUpDown = 52};
     if (Math.abs(oldTargetPos.x-targetPos.x) > 2 || Math.abs(oldTargetPos.y-targetPos.y) > 2) {
       excite();  
     }
