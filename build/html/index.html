@@ -7,13 +7,14 @@
     <meta name="author" content="">
     <!-- <link rel="icon" href="../../../../favicon.ico"> -->
 	<title>Adam</title>
+	<link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
 	<style>{{> ../../build/css/partials/style.css}}</style>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="https://placehold.it/60x60" width="30" height="30" alt="Adam">
+      <img id="brandFace" src="https://placehold.it/60x60" width="30" height="30" alt="Adam">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -21,7 +22,7 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" name="#home" href="#home">Home</a>
+          <a class="nav-link" name="#home" href="#home">Portfolio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
@@ -32,16 +33,14 @@
 </nav>
 <header class="masthead bg-primary text-white text-center">
   <div class="container">
-    <h1 class="text-uppercase mb-1">Adam Sharaf</h1>
+    <h1 class="text-uppercase mb-1 display-3">Adam Sharaf</h1>
     <p>ADD-um SHARE-if</p>
     <hr>
     <h2 class="font-weight-light mb-4">Digital&nbsp;Marketer <span class="d-none d-sm-inline">&bull;</span><span class="d-sm-none"><br></span> Front-End&nbsp;Developer <span class="d-none d-lg-inline">&bull;</span><span class="d-lg-none"><br></span> Graphic&nbsp;Designer <span class="d-none d-sm-inline">&bull;</span><span class="d-sm-none"><br></span> Copywriter </h2>
     <canvas id="face" class="img-fluid mb-0 d-block mx-auto" width="880" height="1000" style="position: relative; width: 400px; height: auto;"></canvas>
   </div>
 </header>
-<br>
-<br><br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 <script>
 	{{> ../../build/js/partials/main.js }}
 	

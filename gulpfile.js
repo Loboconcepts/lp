@@ -40,7 +40,7 @@ gulp.task('purgecss', function() {
 })
 
 gulp.task('compress', function() {
-  gulp.src(['.build/js/main.js'])
+  gulp.src(['./build/js/main.js'])
     .pipe(minify({
         noSource:true,
         ext : {

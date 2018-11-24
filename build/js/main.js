@@ -2043,3 +2043,9 @@ var faceTiming = setInterval(function() {
   }
   return runFace;
 }(), 20);
+
+var faceRender = new Image();
+faceRender.src = canvas.toDataURL();
+document.querySelector("#brandFace").src = faceRender.src;
+
+

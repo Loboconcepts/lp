@@ -2,10 +2,12 @@
 	padding-top:70px;
 }
 
-
+h1, .h1 {
+	font-family: 'Acme', sans-serif !important;
+}
 
 $theme-colors: (
-	primary: $cyan,
+	primary: #41466b,
 	secondary: $gray-600,
 	success: $green,
 	info: $cyan,
