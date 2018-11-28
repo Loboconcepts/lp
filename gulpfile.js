@@ -25,17 +25,17 @@ sass.compiler = require('node-sass');
 gulp.task('sass', function() {
   return gulp.src('./sass/style.scss')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(gulp.dest('./build/css/partials'));
+    .pipe(gulp.dest('./build/css'));
 });
 
 gulp.task('purgecss', function() {
   return gulp.src('./build/css/style.css')
-    // .pipe(
-    //   purgecss({
-    //     content: ['./build/html/index.html'],
-    //     whitelist: ['body','a','p','h1','h2','h3','h4','h5','h6']
-    //   })
-    // )
+    .pipe(
+      purgecss({
+        content: ['./build/html/index.html'],
+        whitelist: ['body','a','p','h1','h2','h3','h4','h5','h6']
+      })
+    )
     .pipe(gulp.dest('./build/css/partials'))
 })
 
