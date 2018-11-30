@@ -15,7 +15,7 @@ function getPosition(element) {
     y += (element.offsetTop - element.scrollTop + element.clientTop);
     element = element.offsetParent;
   };
-  return y - (document.querySelector("header").offsetHeight + 10);
+  return y - (document.querySelector("nav").offsetHeight - 50);
 };
 
 // Native Javascript for Bootstrap 4 v2.0.25 | © dnp_theme | MIT-License
@@ -1841,6 +1841,7 @@ canvas.width = W-120;
 canvas.height = H;
 canvas.style.position = "relative";
 canvas.style.width = "410px";
+canvas.style.backgroundColor = "#41466b";
 canvas.style.height = "auto";
 
 var ctx = canvas.getContext("2d");
@@ -1860,6 +1861,7 @@ function drawFace() {
   ctx.quadraticCurveTo(0,-600,-270,-330);
   ctx.fill();
   ctx.stroke();
+  ctx.closePath();
 
 
   //shirt/body
@@ -1871,6 +1873,7 @@ function drawFace() {
   ctx.quadraticCurveTo(300,300,-0,300);
   ctx.fill();
   ctx.stroke();
+  ctx.closePath();
 
   //neck
   ctx.beginPath();
@@ -1881,6 +1884,7 @@ function drawFace() {
   ctx.lineTo(160,0);
   ctx.fill();
   ctx.stroke();
+  ctx.closePath();
 
   //outer face
   ctx.beginPath();
@@ -1894,6 +1898,7 @@ function drawFace() {
   ctx.fill();
   ctx.stroke();
   ctx.clip();
+  ctx.closePath();
 
   //beard
   ctx.beginPath();
@@ -1912,6 +1917,7 @@ function drawFace() {
   ctx.quadraticCurveTo(60, 0, 60, 120);
   ctx.lineTo(0, 120);
   ctx.stroke();
+  ctx.closePath();
 
   //mouth
   ctx.beginPath();
@@ -1923,6 +1929,7 @@ function drawFace() {
   ctx.quadraticCurveTo(0, 220+mouthOpen, -100, 150 + mouthRand);
   ctx.fill();
   ctx.stroke();
+  ctx.closePath();
 
   //eyebrows
   ctx.beginPath();
@@ -1933,6 +1940,7 @@ function drawFace() {
   ctx.moveTo(200, -140);
   ctx.quadraticCurveTo(100,-160,50,-eyebrowExcite);
   ctx.stroke();
+  ctx.closePath();
 
   //eye shadow
   ctx.beginPath();
@@ -1945,6 +1953,7 @@ function drawFace() {
   ctx.quadraticCurveTo(100+eyeShadow, -160-eyeShadow, 50-eyeShadow, -80-eyeShadow);
   ctx.quadraticCurveTo(80, -30+eyeShadow, 200+eyeShadow, -80+eyeShadow);
   ctx.fill();
+  ctx.closePath();
   //eyes
   ctx.fillStyle = "#ffffff"
   ctx.beginPath();
@@ -1957,6 +1966,7 @@ function drawFace() {
   ctx.fill();
   // ctx.stroke();
   ctx.clip();
+  ctx.closePath();
 
   //cornea
 
@@ -1970,7 +1980,7 @@ function drawFace() {
   ctx.arc(lookDirection, -eyeUpDown, 30, 0, Math.PI * 2, true);
   ctx.fill();
   ctx.stroke();
-  // ctx.closePath();
+  ctx.closePath();
 
   ctx.restore();
 }
@@ -2025,7 +2035,7 @@ var m;
 var oldTargetPos = targetPos;
 var faceTiming = setInterval(function() {
   function runFace() {
-    
+    ctx.clearRect(-600, -600, 600, 600);
     lookDirection = 60 + ((targetPos.x*100)/window.innerWidth);
     eyeUpDown = 105 - (((targetPos.y-(canvas.offsetTop-window.pageYOffset))*100)/(window.innerHeight));
     if (eyeUpDown > 112) {eyeUpDown = 112};
