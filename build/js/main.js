@@ -1840,7 +1840,7 @@ var canvas = document.getElementById("face");
 canvas.width = W-120;
 canvas.height = H;
 canvas.style.position = "relative";
-canvas.style.width = "400px";
+canvas.style.width = "410px";
 canvas.style.height = "auto";
 
 var ctx = canvas.getContext("2d");
