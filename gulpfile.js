@@ -30,12 +30,12 @@ gulp.task('sass', function() {
 
 gulp.task('purgecss', function() {
   return gulp.src('./build/css/style.css')
-    // .pipe(
-    //   purgecss({
-    //     content: ['./build/html/index.html'],
-    //     whitelist: ['body','a','p','h1','h2','h3','h4','h5','h6','hr']
-    //   })
-    // )
+    .pipe(
+      purgecss({
+        content: ['./build/html/index.html'],
+        whitelist: ['body','a','p','h1','h2','h3','h4','h5','h6','hr']
+      })
+    )
     .pipe(gulp.dest('./build/css/partials'))
 })
 
