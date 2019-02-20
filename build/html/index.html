@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAACoVwAAAAAAAP+EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAERERERERERERERERERERERERERERERERESIRIhAAABERIhEiEAAAEREiESIREQARESIRIhERABERIiIiEAAAEREiIiIQAAARESIRIhAAABERIhEiEAEREREiESIQARERERIiIRABEREREiIhEAAAERERIhEQAAARERERERERERH//wAA//8AAP//AADMgwAAzIMAAMzzAADM8wAAwIMAAMCDAADMgwAAzJ8AAMyfAADhnwAA4YMAAPODAAD//wAA" rel="icon" type="image/x-icon" />
 	<title>Adam</title>
 	<link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
 	<style>{{> ../../build/css/partials/style.css}}</style>
@@ -22,10 +22,20 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link custClickEvent" name="#stuff" href="#stuff">Squares of Stuff</a>
+          <a class="nav-link custClickEvent" name="#stuff" href="#stuff">Portfolio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link custClickEvent" name="#biography" href="#biography">Biography</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-info" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Framerate
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <button class="dropdown-item fps_select" name="5" href="#">5</button>
+            <button class="dropdown-item fps_select" name="24" href="#">24</button>
+            <button class="dropdown-item fps_select" name="60" href="#">60</button>
+          </div>
         </li>
       </ul>
     </div>
@@ -39,40 +49,106 @@
     <h2 class="font-weight-light mb-4">Digital&nbsp;Marketer <span class="d-none d-sm-inline">&bull;</span><span class="d-sm-none"><br></span> Front-End&nbsp;Developer <span class="d-none d-lg-inline">&bull;</span><span class="d-lg-none"><br></span> Graphic&nbsp;Designer <span class="d-none d-sm-inline">&bull;</span><span class="d-sm-none"><br></span> Copywriter </h2>
     <canvas id="face" class="img-fluid mb-0 d-block mx-auto" width="880" height="1000" style="position: relative; width: 400px; height: auto;"></canvas>
   </div>
-</header><section id="stuff">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<h2>Squares of Stuff</h2>
-				<p>No images to keep page fast</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xl-4 col-md-6 text-center">
-				<a href="https://www.dlandkitchen.com">dlandkitchen.com</a>
-				<p>Built website</p>
-			</div>
-			<div class="col-xl-4 col-md-6 text-center">
-				<a href="https://www.dlandkitchen.com">dlandkitchen.com</a>
-				<p>Built website</p>
-			</div>
-			<div class="col-xl-4 col-md-6 text-center">
-				<a href="https://www.dlandkitchen.com">dlandkitchen.com</a>
-				<p>Built website</p>
-			</div>
-		</div>
-	</div>
+</header><section id="stuff" class="bg-lightgray">
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2>Portfolio</h2>
+        </div>
+    </div>
+    <div class="row mt-sm-4">
+        <div class="col-md-6 mt-2 px-sm-2">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Slot Machine Design</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Bluegreen Vacations, 2019</h6>
+                    <p class="card-text">
+                    <div class="row">
+                        <div class="col-4 px-2"><img class="img-fluid fade" src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" data-src="/assets/slot-machine-motion.gif" /></div>
+                        <div class="col-8 px-2 text-left">
+                            <p>Programmed a working slot machine as a customer engagement tool. Currently in the Bass Pro Shop in Las Vegas. Bass Pro's Audio Visual company said, "Looks great, cool booth. Is an eye grabber & attention-getter."</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#slotMachine">Details</button>
+                        </div>
+                    </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-2 px-sm-2">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Designed Food Truck Brand</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">D-Land Kitchen, 2018</h6>
+                    <p class="card-text">
+                    <div class="row">
+                        <div class="col-4 px-2"><img class="img-fluid fade" src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" data-src="/assets/food-truck-motion.gif" /></div>
+                        <div class="col-8 px-2 text-left">
+                            <p>Designed all creative collateral for Cleveland and Detroit inspired food truck brand. Due to a short deadline, all materials were completed within one month.</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#slotMachine">Details</button>
+                        </div>
+                    </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 mt-2 px-sm-2">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Email and Creative Collateral</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Planet Protein Inc., 2018</h6>
+                    <div class="row">
+                        <div class="col-4 px-2"><img class="img-fluid fade" src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" data-src="#" /></div>
+                        <div class="col-8 px-2 text-left">
+                            <p>Designed email marketing templates and outlined PPC, email marketing, and SEO campaign strategies. Designed e-commerce website on Shopify platform.</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#slotMachine">Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section><section id="biography" class="bg-secondary text-white">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<h2>Biography</h2>
-				<p>Hello</p>
+				<p>Adam biography</p>
 			</div>
 		</div>
 	</div>
 	
 </section>
+<!-- Slot Machine -->
+<div class="modal fade" id="slotMachine" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="d-block">
+          <h5 class="modal-title" id="slotMachineLabel">Slot Machine Design</h5>
+          <h6 class="modal-title text-muted" id="slotMachineLabel">Bluegreen Vacations, 2019</h6>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12 col-lg-6 mb-2">
+            <img class="img-fluid fade" src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" data-src="/assets/slot-machine-display.jpg" />
+          </div>
+          <div class="col-12 col-lg-6">
+            Slot machine built with HTML, CSS, and JavaScript. Designed using the HTML Canvas element. Compiled into an executable application using <a href="https://github.com/electron">Electron</a>. Templatized the various elements for later designing ease.
+            <br><br>
+            Project began November 2018 and was delivered February 2019. In Las Vegas, it is used a customer engagement tool. I programmed various odds and mechanics to designate a winner. The business decided on mechanic wherein the odds begin with a 1 in 5 chance of winning. Upon losing, the odds reduce to 1 in 4, and so on and so fourth until the the odds of winning are 1 in 1, forcing a win. Upon winning, the odds reset to 1 in 5.
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

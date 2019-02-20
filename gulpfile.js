@@ -5,6 +5,8 @@ var gulpSequence = require('gulp-sequence');
 var purgecss = require('gulp-purgecss');
 var minify = require('gulp-minify');
 var gzip = require('gulp-gzip');
+var watch = require('gulp-watch');
+var batch = require('gulp-batch');
  
 gulp.task('gzip', function() {
     gulp.src('./dist/index.html')
@@ -30,12 +32,12 @@ gulp.task('sass', function() {
 
 gulp.task('purgecss', function() {
   return gulp.src('./build/css/style.css')
-    .pipe(
-      purgecss({
-        content: ['./build/html/index.html'],
-        whitelist: ['body','a','p','h1','h2','h3','h4','h5','h6','hr']
-      })
-    )
+    // .pipe(
+    //   purgecss({
+    //     content: ['./build/html/index.html'],
+    //     whitelist: ['body','a','p','h1','h2','h3','h4','h5','h6','hr']
+    //   })
+    // )
     .pipe(gulp.dest('./build/css/partials'))
 })
 
@@ -57,4 +59,18 @@ gulp.task('mustache-final', function() {
     .pipe(gulp.dest("./dist"));
 });
 
-gulp.task('default', gulpSequence('mustache-html','compress','sass','purgecss','mustache-final'));
+gulp.task('default', function () {
+    watch('build/html/partials/*.html', batch(function (events, done) {
+        gulp.start('build', done);
+    }));
+});
+
+gulp.task('build', function(callback) {
+    gulpSequence(
+    'mustache-html',
+    'compress',
+    'sass',
+    'purgecss',
+    'mustache-final'
+    )(callback)});
+

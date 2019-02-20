@@ -1,3 +1,14 @@
+window.addEventListener('load', function(){
+    var allimages= document.getElementsByTagName('img');
+    for (var i=0; i<allimages.length; i++) {
+        if (allimages[i].getAttribute('data-src')) {
+            allimages[i].setAttribute('src', allimages[i].getAttribute('data-src'));
+            allimages[i].addEventListener("load", function(event) {event.target.classList.add("show");})
+            
+        }
+    }
+}, false);
+
 for (i = 0; i < document.querySelectorAll(".custClickEvent").length; i++) {
   document.querySelectorAll(".custClickEvent")[i].addEventListener("click", function () {
     window.scrollTo({
@@ -2033,26 +2044,50 @@ var m;
     eyebrowExcite = eyebrowExcite + m/4;
   };
 var oldTargetPos = targetPos;
-var faceTiming = setInterval(function() {
-  function runFace() {
-    ctx.clearRect(-600, -600, 600, 600);
-    lookDirection = 60 + ((targetPos.x*100)/window.innerWidth);
-    eyeUpDown = 105 - (((targetPos.y-(canvas.offsetTop-window.pageYOffset))*100)/(window.innerHeight));
-    if (eyeUpDown > 112) {eyeUpDown = 112};
-    if (eyeUpDown < 52) {eyeUpDown = 52};
-    if (Math.abs(oldTargetPos.x-targetPos.x) > 2 || Math.abs(oldTargetPos.y-targetPos.y) > 2) {
-      excite();  
-    }
-    drawFace();
-    oldTargetPos = targetPos;
+var FPS = 5;
 
-
-    
-    
-
+function runFace() {
+  ctx.clearRect(-600, -600, 600, 600);
+  lookDirection = 60 + ((targetPos.x*100)/window.innerWidth);
+  eyeUpDown = 105 - (((targetPos.y-(canvas.offsetTop-window.pageYOffset))*100)/(window.innerHeight));
+  if (eyeUpDown > 112) {eyeUpDown = 112};
+  if (eyeUpDown < 52) {eyeUpDown = 52};
+  if (Math.abs(oldTargetPos.x-targetPos.x) > 2 || Math.abs(oldTargetPos.y-targetPos.y) > 2) {
+    excite();  
   }
-  return runFace;
-}(), 20);
+  drawFace();
+  oldTargetPos = targetPos;
+  window.setTimeout(runFace, 1000/FPS )
+};
+
+runFace();
+
+
+
+
+
+
+// var faceTiming = setInterval(function() {
+//   function runFace() {
+//     ctx.clearRect(-600, -600, 600, 600);
+//     lookDirection = 60 + ((targetPos.x*100)/window.innerWidth);
+//     eyeUpDown = 105 - (((targetPos.y-(canvas.offsetTop-window.pageYOffset))*100)/(window.innerHeight));
+//     if (eyeUpDown > 112) {eyeUpDown = 112};
+//     if (eyeUpDown < 52) {eyeUpDown = 52};
+//     if (Math.abs(oldTargetPos.x-targetPos.x) > 2 || Math.abs(oldTargetPos.y-targetPos.y) > 2) {
+//       excite();  
+//     }
+//     drawFace();
+//     oldTargetPos = targetPos;
+//   }
+//   return runFace;
+// }(), 1000/2);
+
+var fps_select = document.getElementsByClassName("fps_select");
+for (var i = 0; i < fps_select.length; i++) {
+    fps_select[i].addEventListener('mouseup', function(event) {FPS = parseInt(event.target.name), console.log(FPS)}, false);
+}
+
 
 var faceRender = new Image();
 faceRender.src = canvas.toDataURL();
