@@ -1,5 +1,5 @@
 {
-	"title" : "Adam",
+	"title" : "Adam Sharaf's Portfolio",
 	"styles" : "{{> ../../build/css/partials/style.css}}",
 	"scripts" : "{{> ../../build/js/partials/main.js }}"
 }
