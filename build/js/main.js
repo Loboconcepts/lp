@@ -1996,6 +1996,77 @@ function drawFace() {
   ctx.restore();
 }
 
+function drawUpdateFace() {
+  ctx.rect(0, 0, canvas.width, canvas.height);
+  ctx.save();
+  ctx.translate(canvas.width/2, canvas.height/2);
+
+  //mouth
+  ctx.beginPath();
+  ctx.fillStyle = "#000000"
+  ctx.strokeStyle="#DDA8A0";
+  ctx.lineWidth=5;
+  ctx.moveTo(-100, 150 + mouthRand);
+  ctx.quadraticCurveTo(0, 220, 100, 150 + mouthRand);
+  ctx.quadraticCurveTo(0, 220+mouthOpen, -100, 150 + mouthRand);
+  ctx.fill();
+  ctx.stroke();
+  ctx.closePath();
+
+  //eyebrows
+  ctx.beginPath();
+  ctx.strokeStyle="#6A4E42";
+  ctx.lineWidth=15;
+  ctx.moveTo(-200, -140);
+  ctx.quadraticCurveTo(-100,-160,-50,-eyebrowExcite);
+  ctx.moveTo(200, -140);
+  ctx.quadraticCurveTo(100,-160,50,-eyebrowExcite);
+  ctx.stroke();
+  ctx.closePath();
+
+  //eye shadow
+  ctx.beginPath();
+  ctx.strokeStyle="#000000";
+  ctx.lineWidth=5;
+  ctx.moveTo(-200-eyeShadow, -80-eyeShadow);
+  ctx.quadraticCurveTo(-100-eyeShadow, -160-eyeShadow, -50 + eyeShadow, -80-eyeShadow);
+  ctx.quadraticCurveTo(-80, -30+eyeShadow, -200-eyeShadow, -80+eyeShadow);
+  ctx.moveTo(200+eyeShadow, -80-eyeShadow);
+  ctx.quadraticCurveTo(100+eyeShadow, -160-eyeShadow, 50-eyeShadow, -80-eyeShadow);
+  ctx.quadraticCurveTo(80, -30+eyeShadow, 200+eyeShadow, -80+eyeShadow);
+  ctx.fill();
+  ctx.closePath();
+  //eyes
+  ctx.fillStyle = "#ffffff"
+  ctx.beginPath();
+  ctx.moveTo(-200, -80);
+  ctx.quadraticCurveTo(-100, -160, -50, -80);
+  ctx.quadraticCurveTo(-100, -30, -200, -80);
+  ctx.moveTo(200, -80);
+  ctx.quadraticCurveTo(100, -160, 50, -80);
+  ctx.quadraticCurveTo(100, -30, 200, -80);
+  ctx.fill();
+  // ctx.stroke();
+  ctx.clip();
+  ctx.closePath();
+
+  //cornea
+
+  ctx.beginPath();
+  ctx.fillStyle = "#786060";
+  ctx.arc(lookDirection-225, -eyeUpDown, 30, 0, Math.PI * 2, true);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(lookDirection, -eyeUpDown, 30, 0, Math.PI * 2, true);
+  ctx.fill();
+  ctx.stroke();
+  ctx.closePath();
+
+  ctx.restore();
+}
+
 
 
 function getMousePos(window, evt) {
@@ -2044,7 +2115,7 @@ var m;
     eyebrowExcite = eyebrowExcite + m/4;
   };
 var oldTargetPos = targetPos;
-var FPS = 5;
+var FPS = 30;
 
 function runFace() {
   ctx.clearRect(-600, -600, 600, 600);
@@ -2063,25 +2134,6 @@ function runFace() {
 runFace();
 
 
-
-
-
-
-// var faceTiming = setInterval(function() {
-//   function runFace() {
-//     ctx.clearRect(-600, -600, 600, 600);
-//     lookDirection = 60 + ((targetPos.x*100)/window.innerWidth);
-//     eyeUpDown = 105 - (((targetPos.y-(canvas.offsetTop-window.pageYOffset))*100)/(window.innerHeight));
-//     if (eyeUpDown > 112) {eyeUpDown = 112};
-//     if (eyeUpDown < 52) {eyeUpDown = 52};
-//     if (Math.abs(oldTargetPos.x-targetPos.x) > 2 || Math.abs(oldTargetPos.y-targetPos.y) > 2) {
-//       excite();  
-//     }
-//     drawFace();
-//     oldTargetPos = targetPos;
-//   }
-//   return runFace;
-// }(), 1000/2);
 
 var fps_select = document.getElementsByClassName("fps_select");
 for (var i = 0; i < fps_select.length; i++) {
